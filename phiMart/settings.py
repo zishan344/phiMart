@@ -1,4 +1,3 @@
-
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
@@ -11,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^6it)f=-=+rc56k(&oeua9)reb_@hl+n8vlkdv&ljq7-*zdfwg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['.vercel.app','127.0.0.1']
 AUTH_USER_MODEL = 'users.User'
@@ -26,8 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drf_yasg',
-    'debug_toolbar',
     'rest_framework',
     'djoser',
     'django_filters',
@@ -36,6 +33,12 @@ INSTALLED_APPS = [
     'product',
     'order'
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        'drf_yasg',
+        'debug_toolbar',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
