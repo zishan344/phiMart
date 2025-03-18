@@ -84,6 +84,14 @@ DATABASES = {
         'PASSWORD': config('password'),
         'HOST': config('host'),
         'PORT': config('port'),
+        'OPTIONS': {
+            'statement_timeout': 30000,
+            'sslmode': 'require',
+            'options': '-c statement_timeout=30000',
+        },
+        'TEST': {
+            'CHARSET': 'UTF8',
+        },
     }
 }
 
