@@ -13,14 +13,12 @@
   ],
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "phiMart/wsgi.py"
     }
-  ],
-  "functions": {
-    "phiMart/wsgi.py": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  ]
 }

@@ -34,21 +34,6 @@ INSTALLED_APPS = [
     'order'
 ]
 
-# Debug toolbar and swagger only in development
-if DEBUG:
-    INSTALLED_APPS += ['drf_yasg', 'debug_toolbar']
-    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
-    SWAGGER_SETTINGS = {
-        'SECURITY_DEFINITIONS': {
-            'Bearer': {
-                'type': 'apiKey',
-                'name': 'Authorization',
-                'in': 'header',
-                'description':'Enter your jwt token in the format: `JWT <your_token>`'
-            }
-        }
-    }
-
 # Remove debug_toolbar from production middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +45,21 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Debug toolbar and swagger only in development
+if DEBUG:
+    INSTALLED_APPS += ['drf_yasg', 'debug_toolbar']
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description':'Enter your jwt token in the format: `JWT <your_token>`'
+        }
+    }
+}
 
 INTERNAL_IPS = [
     "127.0.0.1",
