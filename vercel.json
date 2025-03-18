@@ -1,9 +1,14 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "phiMart/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.11.3" }
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.11",
+        "installCommand": "pip install -r requirements_prod.txt"
+      }
     }
   ],
   "routes": [
