@@ -82,6 +82,8 @@ CORS_ALLOWED_ORIGINS = [
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+BACKEND_URL = config('BACKEND_URL')
+FRONTEND_URL = config('FRONTEND_URL')
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
