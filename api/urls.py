@@ -25,11 +25,8 @@ urlpatterns = [
     path('', include(cart_router.urls)),
     re_path(r'^auth/', include('djoser.urls.jwt')),
     re_path(r'^auth/', include('djoser.urls')),
-    path('payment/initiate', initiate_payment, name='payment-initiate'),
-    path('payment/success', payment_success, name='payment-success'),
-    path('payment/fail', payment_fail, name='payment-fail'),
-    path('payment/cancel', payment_cancel, name='payment-cancel'),
-    
-    # path('products/', include('product.product_urls')),
-    # path('categories/', include('product.category_urls'))
+    path('payment/initiate/', initiate_payment, name='payment-initiate'),
+    path('payment/success/', payment_success, name='payment-success'),
+    path('payment/fail/', payment_fail, name='payment-fail'),
+    path('payment/cancel/', payment_cancel, name='payment-cancel')
 ]

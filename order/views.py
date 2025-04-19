@@ -122,6 +122,12 @@ def initiate_payment(request):
     post_body['cus_city'] = "Dhaka"
     post_body['cus_country'] = "Bangladesh"
     post_body['shipping_method'] = "Courier"
+    post_body['ship_name'] = f"{user.first_name} {user.last_name}"
+    post_body['ship_add1'] = user.address
+    post_body['ship_city'] = "Dhaka"
+    post_body['ship_postcode'] = "1000"
+    post_body['ship_country'] = "Bangladesh"
+    post_body['ship_phone'] = user.phone_number
     post_body['multi_card_name'] = ""
     post_body['num_of_item'] = num_items
     post_body['product_name'] = "E-commerce Products"
