@@ -13,6 +13,9 @@ from sslcommerz_lib import SSLCOMMERZ
 from rest_framework.decorators import api_view
 from django.conf import settings as main_settings
 from django.http import HttpResponseRedirect
+from rest_framework.views import APIView
+
+
 class CartViewSet(CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, GenericViewSet):
     serializer_class = CartSerializer
     permission_classes = [IsAuthenticated]
@@ -99,6 +102,7 @@ class OrderViewset(ModelViewSet):
         return Order.objects.prefetch_related('items__product').filter(user=self.request.user)
 
 
+
 @api_view(['POST'])
 def initiate_payment(request):
     user = request.user
@@ -156,3 +160,12 @@ def payment_cancel(request):
 @api_view(['POST'])
 def payment_fail(request):
     return HttpResponseRedirect(f"{main_settings.FRONTEND_URL}/dashboard/orders/")
+
+class HasOrderProduct(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request,product_id):
+        user = request.user
+        has_ordered = OrderItem.objects.filter(order__user=user, product_id=product_id).exists()
+        return Response({'hasOrdered': has_ordered})
